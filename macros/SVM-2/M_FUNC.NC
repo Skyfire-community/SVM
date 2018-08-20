@@ -180,14 +180,14 @@ M3000
 %
 
 O0022
-(膛 blowing - open OUT20)
+(spindle blower - open OUT20)
 #2=1400+20
 ##2=1
 #1860=1
 M3000
 %
 O0023
-(膛 blowing - off OUT20)
+(spindle blower - off OUT20)
 #2=1400+20
 ##2=0
 #1860=0
