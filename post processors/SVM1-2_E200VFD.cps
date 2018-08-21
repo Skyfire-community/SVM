@@ -1,17 +1,19 @@
+
 /**
   Copyright (C) 2012-2018 by Autodesk, Inc.
   All rights reserved.
 
   Adtech post processor configuration.
 
-  $Revision: 1.3 For Skyfire SVM1 & SVM2 with AE200 VFD ONLY!!$
+  $Revision: 1.4 For Skyfire SVM1 & SVM2 with AE200 VFD ONLY!!$
   $Fixed: Will print M29$
   $Fixed: 2 second Spindle delay for spin up$
   $Fixed: Can use All coolant types$
   $Fixed: Will print G05 to stop spindle$
   $Fixed: Defaults to NOT preload tool$
   $Fixed: FloodMist & Mist 5-24-18
-  $Date: 2018-05-06 $
+  $Add: M28 after canned tap & drill cycles 
+  $Date: 2018-08-21 $
   MOD by <<<<CNC Junkie>>>>
   
   FORKID {04622D27-72F0-45d4-85FB-DB346FD1AE22}
@@ -1966,7 +1968,7 @@ function onCycleEnd() {
       cycleSubprogramIsActive = false;
     }
     if (!cycleExpanded) {
-      writeBlock(conditional(!properties.useG95, gFeedModeModal.format(94)), gCycleModal.format(80));
+      writeBlock(conditional(!properties.useG95, gFeedModeModal.format(94)), (mFormat.format(28)), gCycleModal.format(80));
       zOutput.reset();
     }
   }
