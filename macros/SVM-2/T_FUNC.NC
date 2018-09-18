@@ -29,7 +29,7 @@ System parameter definition:
 #4120 Current tool number in the system
 #400 The number of system tools set should be equal to the magazine capacity.
 #403 Tool change height
-#404 刀库运动安全高度
+#404 Tool magazine movement safety height
 #405 Tool change fast speed
 #406 Tool change slow speed
 #3000 System prompt information display
