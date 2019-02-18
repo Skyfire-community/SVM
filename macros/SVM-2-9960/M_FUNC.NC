@@ -1,12 +1,12 @@
 /*
 M code macro program
-Modified by: SKYFIRECNC
-Date of repair: 2019.02.10
+Modified by: Josh Handel
+Date of repair: 2019.02.01
 The OXX number represents the corresponding MXX code;
 the #14XX code represents the output port OUTXX;
 the #10XX code represents the input port INXX;
 the #18XX code repersents the console light;
-Additional panel M22 M23 Spindle blower using OUT20
+Additional panel M22M23 Spindle blower using OUT20
 Additional panel M16, M17 magazine initialization
 Additional panel M24, M25 row swarf using OUT15
 The additional panel F0 is defined as the first and second spindle switches, and the control OUT13 is the electric spindle pump control.

@@ -1,6 +1,6 @@
 /*
 12 disk cutters change tool macro program
-Modified by: SKYFIRE
+Modified by: Josh Handel
 Date of repair: 2019.02.10
 IO configuration
 Output point configuration:
