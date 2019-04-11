@@ -285,14 +285,26 @@ M3000
 O0038
 (FCNC6D spindle positioning open OUT17)
 IF[#3906!=2]M3000 (non-manual mode exit)
-(do nothing)
 #1889=1
+M09 (close cooling)
+M89 P54 L1 (spindle forward rotation output)
+M89 P55 L1 (spindle directional output)
+G04 X2
+M89 P54 L0 (spindle forward rotation output)
+M89 P55 L0 (spindle directional output)
+#1889=0
 M3000
 %
 O0039
 (FCNC6D spindle positioning off OUT17)
 IF[#3906!=2]M3000 (non-manual mode exit)
-(do nothing)
+#1889=1
+M09 (close cooling)
+M89 P54 L1 (spindle forward rotation output)
+M89 P55 L1 (spindle directional output)
+G04 X2
+M89 P54 L0 (spindle forward rotation output)
+M89 P55 L0 (spindle directional output)
 #1889=0
 M3000
 %

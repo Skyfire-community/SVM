@@ -1,30 +1,25 @@
 
 /**
-  Copyright (C) 2012-2018 by Autodesk, Inc.
-  All rights reserved.
-
   Adtech post processor configuration.
 
-  $Revision: 2.1 For Skyfire SVM1 & SVM2 with AE200 VFD ONLY!!$ 4 AXIS A and B axis
+  $Revision: 2.2 For Skyfire SVM1 & SVM2 with AE200 VFD ONLY!!$ 4 AXIS A and B axis
   $Fixed: Will print M29$
-  $Fixed: 2 second Spindle delay for spin up$
+  $Fixed: Spindle delay till IN05 (spindle ready)
   $Fixed: Can use All coolant types$
   $Fixed: Will print G05 to stop spindle$
   $Fixed: Defaults to NOT preload tool$
   $Fixed: FloodMist & Mist 5-24-18
   $Add: M28 after canned tap & drill cycles 
-  $Add:  4 A Axis configured for simultanious use               DELETE // Befoe bAxis to enable 5 axis
-  $Date: 2018-10-09 $                  <<<<<<<<<<<<<<   ALL NEW FORK FROM HSM,,,  LOTS OF CHANGES IN THIS ONE !!!   >>>>>>>>>>>>>>>>>
+  $Add:  4 A Axis configured for simultanious use               DELETE // Before bAxis to enable 5 axis
+  $Date: 2019-04-10 $                  <<<<<<<<<<<<<<   ALL NEW FORK FROM HSM,,,  LOTS OF CHANGES IN THIS ONE !!!   >>>>>>>>>>>>>>>>>
   $Removed G53.1, G68.1, and umm.. a lot of other crap.. 
-  MOD by <<<<CNC Junkie>>>>  
-  
-  FORKID {04622D27-72F0-45d4-85FB-DB346FD1AE22}
+  MOD by <<<<Josh H.>>>>  
 */
 
-description = "CNC Junkie";
-vendor = "Tripple Tree";
-vendorUrl = "http://www.YOUR_MOM.com";
-legal = "Copyright (C) 2012-2018 by Autodesk, Inc.";
+description = "SVM AdTech Controlled Post processor";
+vendor = "Skyfire-community";
+vendorUrl = "https://github.com/Skyfire-community/SVM";
+legal = "MIT License";
 certificationLevel = 2;
 minimumRevision = 40783;
 
@@ -1226,7 +1221,12 @@ function onSection() {
       );
 	  
 /** spindle delay */
-writeBlock(gFormat.format(04), ("X"+"2")); // pause program cycle after spindle starts
+ writeBlock("#101=0");
+ writeBlock("WHILE[#1005!=0] DO2  (detects the spindle at speed)");
+ writeBlock("IF[#101>1000]THEN #3000=1(WARNING:IN05! Spindle speed timeout!)");
+ writeBlock(gFormat.format(04), ("P"+"10"));
+ writeBlock("#101=#101+1");
+ writeBlock("END2");
 }
 
     onCommand(COMMAND_START_CHIP_TRANSPORT);
